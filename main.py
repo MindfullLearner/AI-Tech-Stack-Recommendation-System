@@ -55,9 +55,9 @@ def recommendations(input_skills):
 
         for skill in skills:
 
-            if skill in user_skills:
+            if skill.lower() in user_skills:
                 score += 1
-                matched_skills.append(skill)
+                matched_skills.append(skill)   # Original name
             else:
                 missing_skills.append(skill)
 
@@ -92,7 +92,7 @@ while True:
         print("❌ Please enter at least one skill.")
     else:
         break
-    
+
 result = recommendations(input_skills)
 print("\n===== Career Recommendations =====")
 
