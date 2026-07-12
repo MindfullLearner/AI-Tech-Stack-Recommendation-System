@@ -85,10 +85,15 @@ print("========================================")
 print("   AI Tech Stack Recommendation System")
 print("========================================")
 
-input_skills = input("Enter your skills (comma separated): ")
+while True:
+    input_skills = input("Enter your skills (comma separated): ")
 
+    if not input_skills.strip():
+        print("❌ Please enter at least one skill.")
+    else:
+        break
+    
 result = recommendations(input_skills)
-
 print("\n===== Career Recommendations =====")
 
 displayed_careers = 0
