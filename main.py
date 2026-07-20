@@ -348,6 +348,14 @@ skills_entry = tk.Entry(
 )
 
 skills_entry.pack(pady=10)
+#Create button for taking input
+recommend_button = tk.Button(
+    window,
+    text="Recommend Careers",
+    command=recommend   #call function named recommend  when user clicls on button
+)
+
+recommend_button.pack(pady=10)
 #create ouput arae where the result will be displayed
 results_frame = tk.Frame(window)
 results_frame.pack(pady=10)
@@ -366,12 +374,5 @@ scrollbar.config(command=results_text.yview)
 results_text.pack(side=tk.LEFT)
 scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
 
-#Create button for taking input
-recommend_button = tk.Button(
-    window,
-    text="Recommend Careers",
-    command=recommend   #call function named recommend  when user clicls on button
-)
 
-recommend_button.pack(pady=10)
 window.mainloop()
