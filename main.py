@@ -148,8 +148,11 @@ career_database = {
 def recommendations(input_skills):
 
     # Convert input into a clean list
-    user_skills = input_skills.split(",")
-    user_skills = [skill.strip().lower() for skill in user_skills]
+    user_skills = [
+    skill.strip().lower()
+    for skill in input_skills.split(",")
+    if skill.strip()
+]
 
     results = {}
 
@@ -211,7 +214,8 @@ def get_match_rating(percentage):
     
 # dispaly of each career details
 def display_recommendation(career, details, rank):
-    print("=========================")
+    output=""
+    output += "=========================\n"
     if rank == 1:
         title = "🏆 BEST MATCH"
 
@@ -223,32 +227,33 @@ def display_recommendation(career, details, rank):
 
     else:
         title = f"Recommendation #{rank}"
-    print(" "+title)
-    print("=========================")
-    print(f"🏆 Career: {career}")
+    output+= " "+title+"\n"
+    output+= "=========================\n"
+    output+=f"🏆 Career: {career}"+"\n"
     
     stars, rating = get_match_rating(details["percentage"])
-    print(stars)
-    print(rating)
-    print(f"\n📊 Match Percentage: {details['percentage']:.2f}%")
-    print("\nDescription:\n"+details['description'])
-    print("\nSalary:\n"+details['salary'])
-    print("\nDifficulty:\n"+details['difficulty'])
-    print("\nLearning Time:\n"+details['learning_time'])
-    print("\nMatched Skills:")
+    output+= stars +"\n"
+    output+= rating +"\n"
+    output+=f"\n📊 Match Percentage: {details['percentage']:.2f}%"
+    output+= "\nDescription:\n"+details['description']
+    output+="\nSalary:\n"+details['salary']
+    output+="\nDifficulty:\n"+details['difficulty']
+    output+="\nLearning Time:\n"+details['learning_time']
+    output+="\nMatched Skills:"
     if details["matched"]:
-        print(", ".join(details["matched"]))
+        output+=", ".join(details["matched"])+"\n"
     else:
-        print("None")
-    print("\nMissing Skills:")
+        output+="None"+"\n"
+    output+="\nMissing Skills:"
     if details["missing"]:
-        print(", ".join(details["missing"]))
+        output+=", ".join(details["missing"])+"\n"
     else:
-        print("None")
-    print("\n🛣️ Learning Roadmap:")
+        output+="None"+"\n"
+    output+="\n🛣️ Learning Roadmap:"+"\n"
 
     for step in details["roadmap"]:
-        print(f"• {step}")
+        output+=f"• {step}\n"
+    return output
 
     
 # Main 
@@ -265,7 +270,7 @@ while True:
         break
 
 result = recommendations(input_skills)
-print("\n===== Career Recommendations =====")
+print("\n===== Career Recommendations =====\n")
 
 displayed_careers = 0
 rank = 1
@@ -273,7 +278,8 @@ for career, details in result:
 
     if details["percentage"] == 0:
         continue
-    display_recommendation(career, details, rank)
+    text=display_recommendation(career, details, rank)
+    print(text)
     rank+=1
     displayed_careers += 1    
 if displayed_careers == 0:
