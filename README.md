@@ -1,6 +1,3 @@
-Yes, no problem. Here is the **complete ready-to-copy `README.md`**. You do **not** need to write anything yourself—just copy everything below and replace your current README.
-
-````markdown
 # 🤖 AI Tech Stack Recommendation System
 
 A Python-based career recommendation application that analyzes a user's existing technical skills and recommends suitable software engineering career paths.
